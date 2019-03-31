@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--BootstrapLins and Google Fonts-->
+    <div th:replace="fragments/fragments :: bootstrapLinks"></div>
+    <title>Task</title>
+</head>
+<body>
+<div th:replace="fragments/fragments :: navbar"></div>
+
+<div class="container">
+
+    <!--Back to Home Button-->
+    <div th:replace="fragments/fragments :: backButton"></div>
+    <!--Back to Home Button-->
+
+
+    <th:block th:object="${task}">
+        <div class="row align-items-center">
+            <i class="col-md-1 far fa-5x" th:classappend="${task.done} ? 'fa-check-circle' : 'fa-times-circle'"></i>
+            <u><h1 class="col-md font-weight-bold text-right" th:text="${task.title}" style="padding-left: 200px;"></h1>
+            </u>
+        </div>
+        <div class="row align-items-center mt-3" style="padding-left: 15px;
+                                     padding-right: 15px;">
+            <p th:text="${task.description}"></p>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-md"></div>
+            <div class="col-md-2" th:text="${task.calculateTimespan()} + 'left'"
+                 style="text-align: right; color: darkgrey"></div>
+        </div>
+
+        <hr>
+
+        <div th:if="${task.parentTaskID == null}">
+            <div class="row align-items-center">
+                <div class="col-md-2"><h2>SUBTASKS</h2></div>
+                <div th:if="${task.getChildren().size() > 0}" class="col-md-8 progress" style="padding: 0">
+                    <div class="progress-bar bg-success" role="progressbar"
+                         th:style="'width: ' + ${finishProgress} + '%;'"
+                         th:attr="aria-valuenow=${finishProgress}" aria-valuemin="0" aria-valuemax="100"
+                         th:text="'Progress: ' + ${finishProgress} + '%'"></div>
+                </div>
+                <div th:unless="${task.getChildren().size() > 0}" class="col-md-8" style="padding: 0"></div>
+                <div class="col-md-2" style="text-align: right">
+                    <form th:action="@{/tasks/new/{id}(id = ${task.id})}">
+                        <input type="submit" value="NEW SUBTASK" class="btn btn-sm btn-primary">
+                    </form>
+                </div>
+            </div>
+
+            <th:block th:each="subtask : ${childs}">
+
+                <div class="card">
+                    <div class="card-body" th:classappend="${subtask.done} ? 'text-white bg-success' : ''">
+                        <a th:href="@{/tasks/{id}(id= ${subtask.getId()})}"><h5 th:text="${subtask.title}"></h5></a>
+                        <p th:text="${subtask.description}"></p>
+                    </div>
+                    <div class="card-footer text-muted text-right"
+                         th:text="${subtask.calculateTimespan()} + 'left'"></div>
+                </div>
+                <br>
+
+            </th:block>
+        </div>
+
+    </th:block>
+</div>
+
+
+<!--<div th:replace="fragments/footer :: footer"></div>-->
+<!--Bootstrap Scripts-->
+<div th:replace="fragments/fragments :: bootstrapScripts"></div>
+</body>
+</html>

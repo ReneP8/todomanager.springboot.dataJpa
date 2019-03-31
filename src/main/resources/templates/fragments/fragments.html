@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="bootstrapLinks">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/overview.css}">
+    <link rel="stylesheet" th:href="@{/css/spin-4.0.0.css}">
+
+
+</div>
+
+<div th:fragment="navbar">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <h3 class="navbar-brand mb-0"><i class="fas fa-list-ul"></i><b style="padding-left: 10px">Todomanager
+                Online</b></h3>
+            <span class="navigation-slogan" style="text-align: right">Manage Yourself!</span>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="bootstrapScripts">
+    <script th:src="@{/js/vendor/jquery-3.3.1.js}" type="application/javascript"></script>
+    <script th:src="@{/js/vendor/moment-2.24.0.js}" type="application/javascript"></script>
+    <script th:src="@{/js/vendor/spin-4.0.0.js}" type="application/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+</div>
+
+<div class="container" th:fragment="backButton">
+    <!--Back Button-->
+    <div class="row" id="backButton">
+        <a th:href="@{/tasks/}"><i class="fas fa-arrow-left fa-2x col-md-1"
+                                   style="margin-bottom: 25px; padding-left: 0px; padding-top: 7px; padding-right: 8px;"></i></a>
+        <p class="col-md" style="padding-top: 10px; padding-left: 0;">
+            Go Back to Homescreen
+        </p>
+    </div>
+    <!--Back Button-->
+</div>
+
+
+<!-- Footer -->
+<div class="footer" th:fragment="footer">
+    <div class="container navbar navbar-inner navbar-fixed-bottom">
+        <p class="text-muted credit"><div style="text-align: center;">Todomanager Online v.0.4.3</div></p></div>
+</div>
+<!-- Footer -->
+</body>
+
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--BootstrapLinks and Google Fonts-->
+    <div th:replace="fragments/fragments :: bootstrapLinks"></div>
+    <title>Your Tasks</title>
+</head>
+<body>
+
+<div th:replace="fragments/fragments :: navbar"></div>
+<div class="container paragraph">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>
+                Welcome to your Online-Todomanager!
+            </h3>
+            <br>
+            <p>
+                Here you can see a list of all your Tasks, you have created.
+                Click on <b>+</b>-Button to create a new Task.
+                You also can Edit, Delete or Finish a Task by clicking on the certain Button in the table.
+                If you have any questions please contact me: <a href="#">Rene.Baving@telekom.de</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="text-center" id="spinner" style="display: none;">
+    <img src="/images/spinner.gif" alt="Das Bild konnte nicht geladen werden.">
+</div>
+
+<div class="container task-table-content" id="taskTableContent" style="display: none">
+
+    <div class="row mb-1">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-11" style="text-align: right">
+            <a th:href="@{/tasks/new}">
+                <i class="fas fa-plus-circle fa-3x"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table tasks-table table-hover">
+                <thead class="thead bg-primary text-light">
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Created</th>
+                    <th>Target Date</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody id="tbody-tasks"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+<div th:replace="fragments/fragments :: footer"></div>
+<!--Bootstrap Scripts-->
+<div th:replace="fragments/fragments :: bootstrapScripts"></div>
+<script th:src="@{/js/overview.js}" type="application/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--BootstrapLins and Google Fonts-->
+    <div th:replace="fragments/fragments :: bootstrapLinks"></div>
+    <title>Edit Task</title>
+</head>
+<body>
+<div th:replace="fragments/fragments :: navbar"></div>
+
+<div class="container">
+    <div th:replace="fragments/fragments :: backButton"></div>
+
+    <p>Hier können Sie nähere Informationen über Ihren Task sehen, und diese nach Wunsch auch ändern.</p>
+    <form th:action="@{/tasks/task/{id}(id = ${task.getId()})}" method="post" th:object="${task}">
+        <div class="form-group col-sm-7 input-task-name">
+            <label for="title">Edit Task Name</label>
+            <input id="title" th:field="*{title}" class="form-control" name="title" required/>
+        </div>
+        <div class="form-group col-sm-7 input-task-des">
+            <label for="description">Edit Task Description</label>
+            <textarea th:field="*{description}" id="description" rows="5" class="form-control"
+                      name="description" maxlength="1250"></textarea>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <label for="finishDate">Finish Date*</label>
+                <input type="date" id="finishDate" class="form-control" name="finishDate" th:field="*{finishDate}" required>
+                <input type="hidden" id="created" class="form-control" name="finishDate" th:field="*{created}" required>
+            </div>
+            <div th:if="*{parentTaskID != null}" class="form-group col-sm-5">
+                <label for="parentTaskID">Parent Task ID</label>
+                <select id="parentTaskID" name="parentTaskID" class="form-control">
+                    <option value="">Please select</option>
+                    <div th:each="parent : ${parentTasks}">
+                        <option th:if="${task.parentTaskID == parent.id}" th:value="${parent.id}" th:text="${parent.id + ' - ' + parent.title}" selected></option>
+                        <option th:unless="${task.parentTaskID == parent.id}" th:value="${parent.id}" th:text="${parent.id + ' - ' + parent.title}"></option>
+                    </div>
+                </select>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit Changes"/>
+    </form>
+</div>
+
+<br><br><br>
+<!--<div th:replace="fragments/footer :: footer"></div>-->
+<!--Bootstrap Scripts-->
+<div th:replace="fragments/fragments :: bootstrapScripts"></div>
+</body>
+</html>

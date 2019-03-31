@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--BootstrapLins and Google Fonts-->
+    <div th:replace="fragments/fragments :: bootstrapLinks"></div>
+    <title>New Task</title>
+</head>
+<body>
+<div th:replace="fragments/fragments :: navbar"></div>
+<div class="container">
+
+    <!--Back to Home Button-->
+    <div th:replace="fragments/fragments :: backButton"></div>
+    <!--Back to Home Button-->
+
+    <p>Bitte geben Sie die Daten des neuen Tasks ein, den sie speichern möchten.</p>
+    <form action="/tasks/new" method="post">
+        <div class="form-group col-sm-7 input-task-name">
+            <label for="title">Task Name*</label>
+            <input id="title" placeholder="Please enter task name..." class="form-control" name="title"
+                   required></input>
+        </div>
+        <div class="form-group col-sm-7 input-task-des">
+            <label for="description">Task Description</label>
+            <textarea id="description" rows="5" placeholder="Please enter task description..." class="form-control"
+                      name="description"></textarea>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <label for="finishDate">Finish Date*</label>
+                <input type="date" id="finishDate" class="form-control" name="finishDate" required>
+            </div>
+            <div class="form-group col-sm-5">
+                <label for="parentTaskID">Parent Task</label>
+                <select id="parentTaskID" name="parentTaskID" class="form-control">
+                    <option th:value="${parent.id}" th:text="${parent.id + ' - ' + parent.title}"></option>
+                </select>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Create"></input>
+        <span class="container">Fiels with * are requiered.</span>
+
+    </form>
+</div>
+
+<!--Bootstrap Scripts-->
+<div th:replace="fragments/fragments :: bootstrapScripts"></div>
+</body>
+</html>
